@@ -1,0 +1,31 @@
+#hello_div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: rgb(116, 12, 0);
+  font-weight: bold;
+}
+
+#main {
+  padding-top: 30px;
+  font-weight: bold;
+}
+
+#heading {
+  font-size: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#subheading {
+  font-size: 20px;
+}
+
+#data_row {
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+#year {
+  padding-left: 15px;
+  size: 13px;
+}

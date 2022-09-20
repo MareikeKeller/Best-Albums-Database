@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+
+    <!-- jquery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    />
+
+    <!-- JS for search feature in nav bar-->
+
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" /> -->
+    <link rel="stylesheet" href="../static/main.css" />
+    <title>People</title>
+
+    <!-- Inputs search term into url /> -->
+    <script>
+      function redirect() {
+        let new_search_input = $("#form_input").val();
+        (window.location.href = "/search/" + new_search_input), true;
+
+        if (new_search_input.length == 0) {
+          alert("Search input needed");
+        }
+
+        // alert(window.location.href);
+      }
+
+      // function search_request() {
+      //   //saving search input in variable
+      //   let new_search_input = $("#form_input").val();
+
+      //   if (new_search_input.length == 0) {
+      //     alert("Search input needed");
+      //   }
+      // }
+
+      $(document).ready(function () {
+        $('form').submit(function (e) {
+          e.preventDefault();
+          redirect();
+        });
+        
+
+        $("#submit_button").click(function () {
+          $("#submit_button").submit();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">Best Albums Database</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav"></div>
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            id="form_input"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+            id="submit_button"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container">{% block content %} {% endblock %}</div>
+  </body>
+</html>

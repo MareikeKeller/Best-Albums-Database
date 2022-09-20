@@ -1,0 +1,42 @@
+{% extends "layout.html" %} {% block content %}
+
+<script>
+  let albums = {{albums|tojson}}
+
+  console.log(albums)
+</script>
+
+<script>
+  function display_toplist() {
+    $("#popular_search").empty();
+    for (index in albums) {
+      let artist = albums[index].artist;
+      let album = albums[index].album;
+      let id = albums[index].id;
+
+      console.log(id);
+      let url = "/results/" + id;
+      let new_link = $(
+        "<a href='" + url + "'>" + artist + "  --  " + album + "</a> <br>"
+      );
+
+      //console.log(new_link);
+
+      $("#popular_search").append(new_link);
+
+      if (index > 2) {
+        break;
+      }
+    }
+  }
+
+  $(document).ready(function () {
+    display_toplist();
+  });
+</script>
+
+<div id="main">Most popular searches:</div>
+
+<div id="popular_search"></div>
+
+{% endblock %}

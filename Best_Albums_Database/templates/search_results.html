@@ -1,0 +1,60 @@
+{% extends "layout.html" %} {% block content %}
+
+<script>
+
+  let search_term = {{search_term|tojson}}
+  let found_matches = {{found_matches|tojson}}
+
+  console.log(found_matches)
+
+
+
+  function load_results(found_matches) {
+    $("#search_results_div").empty();
+
+    if (found_matches.length == 0) {
+      let no_results_message = $(
+        "<div id=results_message> No results found!" + found_matches + " </div>"
+      );
+
+      $("#search_results_div").append(no_results_message);
+    } else {
+
+      for (index in found_matches) {
+
+        let artist = found_matches[index].artist;
+        let album = found_matches[index].album;
+        let id = found_matches[index].id;
+
+        // console.log(artist);
+
+        // console.log(id);
+        let url = "/results/" + id;
+        let new_link = $(
+          "<a href='" + url + "'>" + artist + "  --  " + album + "</a> <br>"
+        );
+
+        $("#search_results_div").append(new_link);
+      }
+    }
+  }
+
+  $(document).ready(function () {
+    load_results(found_matches);
+  });
+</script>
+
+<div id="main">Search Results:</div>
+<div id="search_results_div"></div>
+
+<!-- append here 
+
+
+
+{% endblock %}
+
+<!-for OH: why json seriable bug
+- redirecting to page with ID when clicking search
+- searching terms with space
+- just need to append now, right?
+--- albums[each_album]-->

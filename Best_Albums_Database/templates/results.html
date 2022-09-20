@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="row">
+  <div class="col-md-7" id="main">
+    <span id="heading"><b>{{data_id.album}}</b> <br /></span>
+    <span id="subheading"><b>{{data_id.artist}}</b></span>
+
+    <div class="row" id="year">
+      <b>{{data_id.year}}</b>
+    </div>
+    <div class="row" id="data_row">
+      <div>
+        <b>Rank: {{data_id.id}}</b>
+      </div>
+    </div>
+    <div class="row" id="data_row">
+      <div>Awards won:</div>
+      <ul>
+        {% for award in data_id.awards_won %}
+        <li>{{award}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="row" id="data_row">
+      <div>Genres:</div>
+      <ul>
+        {% for genre in data_id.genres %}
+        <li>{{genre}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <br />
+  </div>
+  <div class="col-md-5" id="main">
+    <img src="{{data_id.cover}}" width="300" height="300" />
+  </div>
+</div>
+
+<br />
+
+<div>Summary: {{data_id.summary}}</div>
+
+{% endblock %}
